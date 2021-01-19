@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<mavlink>
+    <include>common.xml</include>
+    <dialect>1</dialect>
+    <enums>
+          <enum name="MAV_BATTERY_CHARGE_STATE">
+            <description>Enumeration for battery charge states.</description>
+            <entry value="0" name="MAV_BATTERY_CHARGE_STATE_UNDEFINED">
+              <description>Low battery state is not provided</description>
+            </entry>
+            <entry value="1" name="MAV_BATTERY_CHARGE_STATE_OK">
+              <description>Battery is not in low state. Normal operation.</description>
+            </entry>
+            <entry value="2" name="MAV_BATTERY_CHARGE_STATE_LOW">
+              <description>Battery state is low, warn and monitor close.</description>
+            </entry>
+            <entry value="3" name="MAV_BATTERY_CHARGE_STATE_CRITICAL">
+              <description>Battery state is critical, return or abort immediately.</description>
+            </entry>
+            <entry value="4" name="MAV_BATTERY_CHARGE_STATE_EMERGENCY">
+              <description>Battery state is too low for ordinary abort sequence. Perform fastest possible emergency stop to prevent damage.</description>
+            </entry>
+            <entry value="5" name="MAV_BATTERY_CHARGE_STATE_FAILED">
+              <description>Battery failed, damage unavoidable. Possible causes (faults) are listed in MAV_BATTERY_FAULT.</description>
+            </entry>
+            <entry value="6" name="MAV_BATTERY_CHARGE_STATE_UNHEALTHY">
+              <description>Battery is diagnosed to be defective or an error occurred, usage is discouraged / prohibited. Possible causes (faults) are listed in MAV_BATTERY_FAULT.</description>
+            </entry>
+            <entry value="7" name="MAV_BATTERY_CHARGE_STATE_CHARGING">
+              <description>Battery is charging.</description>
+            </entry>
+          </enum>
+          <enum name="FIRE_INTENSITY">
+              <description>Enumeration for fire intensity states.</description>
+              <entry value="0" name="FIRE_INTENSITY_NOTHING">
+                <description>There was no fire.</description>
+              </entry>
+              <entry value="1" name="FIRE_INTENSITY_WEAK">
+                <description>Range of fire is less than 1 acre.</description>
+              </entry>
+              <entry value="2" name="FIRE_INTENSITY_MEDIUM">
+                <description>Range of fire is less than 10 acre.</description>
+              </entry>
+              <entry value="3" name="FIRE_INTENSITY_STRONG">
+                <description>Range of fire is less than 100 acre.</description>
+              </entry>
+              <entry value="4" name="FIRE_INTENSITY_VERY_STRONG">
+                <description>Range of fire is equal to or larger than 100 acre.</description>
+              </entry>
+          </enum>
+    </enums>
+    <messages>
+        <message id="147" name="BATTERY_STATUS">
+            <description>Battery information</description>
+            <field type="uint8_t" name="id">Battery ID</field>
+            <field type="int16_t" name="temperature" units="cdegC">Temperature of the battery. INT16_MAX for unknown temperature.</field>
+            <field type="int8_t" name="battery_remaining" units="%">Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.</field>
+            <extensions/>
+            <field type="int32_t" name="time_remaining" units="s">Remaining battery time, 0: autopilot does not provide remaining battery time estimate</field>
+            <field type="uint8_t" name="charge_state" enum="MAV_BATTERY_CHARGE_STATE">State for extent of discharge, provided by autopilot for warning or external reactions</field>
+          </message>
+          <message id="524288" name="GAS_SENSING_RESULT">
+            <field type="uint8_t" name="target_system">System ID (0 for broadcast).</field>
+            <field type="uint8_t" name="target_component">Component ID (0 for broadcast).</field>
+            <field type="uint8_t" name="con_co2" units="ppm">Sensed concentration of CO2.</field>
+            <field type="uint8_t" name="con_co" units="ppm">Sensed concentration of CO.</field>
+            <field type="uint8_t" name="con_ch4" units="ppm">Sensed concentration of CH4.</field>
+            <field type="float" name="pom" units="%">Probability of fire occurance.</field>
+            <field type="uint8_t" name="fire_intencity" enum="FIRE_INTENSITY">Estimated intensity of fire.</field>
+        </message>
+    </messages>
+</mavlink>
