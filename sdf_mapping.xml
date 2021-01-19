@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sdf population="10" timestamp="1610517653">
+    <agent id="1" timestamp="1610517653">
+        <battery>
+            <remaining_amount type="int" UoM="percent">60</remaining_amount>
+            <remaining_time type="int" UoM="minute">36</remaining_time>
+        </battery>
+        <position type="double">
+            <latitude>36.367027</latitude>
+            <longitude>127.344798</longitude>
+            <altitude UoM="meter">13.30</altitude>
+        </position>
+        <mapping>
+            <LAS type="file" format=".las">data/3959-01.las</LAS>
+            <LAS type="file" format=".las">data/3959-02.las</LAS>
+            <LAS type="file" format=".las">data/3959-03.las</LAS>
+            <LAS type="file" format=".las">data/3959-04.las</LAS>
+        </mapping>
+    </agent>
+
+    <agent id="2" timestamp="1610513243">...</agent>
+    ...
+    <agent id="10" timestamp="1610516360">...</agent>
+</sdf>
