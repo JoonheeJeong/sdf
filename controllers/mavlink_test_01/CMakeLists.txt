@@ -1,0 +1,5 @@
+add_library(mavlink_test_01 MODULE mavlink_test_01.h mavlink_test_01.cpp)
+target_link_libraries(mavlink_test_01
+  argos3core_simulator
+  argos3plugin_simulator_eyebot
+  argos3plugin_simulator_genericrobot)
